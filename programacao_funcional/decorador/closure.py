@@ -18,4 +18,6 @@ print(dobro(3))
 print(triplo(4))
 
 teste = fabrica_de_multiplicadores_e_divisores(10, 5)
+print(dir(teste))
+print(teste.__closure__)
 print(teste(1))
