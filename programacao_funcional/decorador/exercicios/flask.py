@@ -1,0 +1,27 @@
+"""
+>>> app = Flask()
+>>> set(app.rotas)
+set()
+>>> @app.rota('/')
+... def raiz():
+...     return 'raiz'
+...
+>>> set(app.rotas)
+{'/'}
+>>> raiz()
+'raiz'
+>>> app.executar('/')
+'raiz'
+>>> @app.rota('/nome')
+... def nome(usuario):
+...     return f'Nome {usuario}'
+...
+>>> set(app.rotas)
+{'/', '/nome'}
+>>> nome('Python')
+'Nome: Python'
+>>> app.executar('/nome', 'Pro')
+'Nome: Pro'
+>>> app.executar('/nao_existe')
+404
+"""
