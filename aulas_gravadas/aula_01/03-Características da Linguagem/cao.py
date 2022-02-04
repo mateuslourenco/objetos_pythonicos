@@ -26,7 +26,53 @@ class Cao(Memifero):
                 self.__dict__ == outro.__dict__)
 
 
-cana = Cao('Cana')
-cana.latir()
-cana.nervoso = True
-cana.latir()
+class Pequines(Cao):
+    """ O pequinês está normalmente nervoso:
+        >>> fido = Pequines('Fido')
+        >>> fido.latir()
+        Fido: Au! Au!
+
+    """
+    nervoso = True
+
+
+class GrandeMixin:
+    """ Mixin: muda o latido"""
+    def latir(self, vezes=1):
+        print(f'{self.nome}:' + ' Wuff!' * vezes)
+
+
+class Mastiff(GrandeMixin,Cao):
+    """ O mastiff late diferente:
+        >>> atos = Mastiff('Atos')
+        >>> atos.latir()
+        Atos: Wuff!
+    """
+
+
+class SaoBernardo(GrandeMixin, Cao):
+    """ O São Bernardo serve conhaque:
+
+        >>> sansao = SaoBernardo('Sansao')
+        >>> sansao.latir()
+        Sansao: Wuff!
+        >>> sansao.servir()
+        Sansao serve o conhaque (restam 9 doses)
+        >>> sansao.doses = 1
+        >>> sansao.servir()
+        Sansao serve o conhaque (restam 0 doses)
+        >>> sansao.servir()
+        Traceback (most recent call last):
+            ...
+        ValueError: Acabou o conhaque
+    """
+
+    def __init__(self, nome):
+        Cao.__init__(self, nome)
+        self.doses = 10
+
+    def servir(self):
+        if self.doses == 0:
+            raise ValueError('Acabou o conhaque')
+        self.doses -= 1
+        print(f'{self.nome} serve o conhaque (restam {self.doses} doses)')
