@@ -16,10 +16,8 @@ class Arvore:
 
     def __iter__(self):
         if self.esquerda:
-            for valor in self.esquerda:
-                yield valor
+            yield from self.esquerda
         yield self.valor
 
         if self.direita:
-            for valor in self.direita:
-                yield valor
+            yield from self.direita
