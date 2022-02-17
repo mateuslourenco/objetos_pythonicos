@@ -1,4 +1,5 @@
 from collections import namedtuple
+from random import shuffle
 
 Carta = namedtuple('Carta', 'valor naipe')
 
@@ -16,9 +17,17 @@ class Baralho:
     def __getitem__(self, pos):
         return self.cartas[pos]
 
+    def __setitem__(self, pos, carta):
+        self.cartas[pos] = carta
+
 
 if __name__ == '__main__':
     baralho = Baralho()
 
+    for carta in baralho:
+        print(carta)
+
+    shuffle(baralho)
+    print(f'{"-" * 20} BARALHO EMBARALHADO {"-" * 20}')
     for carta in baralho:
         print(carta)
