@@ -1,20 +1,25 @@
 class Arvore:
-    '''
-        >>> for no in Arvore(9, Arvore(-2, Arvore(-4), Arvore(-1)), Arvore(19)):
-        ...     print(no)
+    """
+        >>> for noh in Arvore(0, Arvore(-2, Arvore(-4), Arvore(-1)), Arvore(10)):
+        ...     print(noh)
         -4
-        -1
         -2
+        -1
         0
         10
-    '''
+    """
 
     def __init__(self, valor, esquerda=None, direita=None):
         self.valor = valor
         self.esquerda = esquerda
         self.direita = direita
 
+    def __iter__(self):
+        if self.esquerda:
+            for valor in self.esquerda:
+                yield valor
+        yield self.valor
 
-#           0
-#      -2      -10
-# -4        -1
+        if self.direita:
+            for valor in self.direita:
+                yield valor
